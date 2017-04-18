@@ -8,9 +8,9 @@
 # }
 # ActionMailer::Base.delivery_method = :smtp
 
-if rails.env.development? || rails.env.production?
+if Rails.env.development? || Rails.env.production?
   ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smpt_settings = {
+  ActionMailer::Base.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: '2525',
     authentication: :plain,
