@@ -1,3 +1,6 @@
+<div class='nav'>
+  <%= link_to "Add a wiki", new_wiki_path %>
+</div>
 <% @wikis.each do |wiki| %>
   <%= link_to wiki.title, wiki %>
   <%= wiki.body %>

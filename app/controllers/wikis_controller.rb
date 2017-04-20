@@ -7,8 +7,9 @@ class WikisController < ApplicationController
     @wiki = Wiki.new(wiki_params)
     
     if @wiki.save
-      redirect_to @wiki
+      redirect_to @wiki, notice: "Your wiki post has been saved!"
     else
+      flash[:alert] = "There was an error in saving your wiki!"
       render :new
     end
   end
