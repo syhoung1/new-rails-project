@@ -1,19 +1,16 @@
-block do
+5.times do
   User.create!(
-    email: '1r23r@aa.com',
-    password: 'faoief'
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(10, 20)
   )
 end
 users = User.all
 
-5.times do 
+30.times do 
   Wiki.create(
-    title: 'this',
-    body: 'that',
-    private: false,
+    title: Faker::Superhero.name,
+    body: Faker::Hipster.paragraph,
+    private: Faker::Boolean.boolean,
     user: users.sample
   )
 end
-
-
-puts "#{User.count}"
