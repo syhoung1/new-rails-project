@@ -1,0 +1,9 @@
+<div class="col-md-4 pull-left index">
+  <% @wikis.each do |wiki| %>
+    <% if !current_user.standard? || !wiki.private? %>
+    <div class="row col-md-12">
+      <%= link_to wiki.title, wiki %>
+    </div>
+    <% end %>
+  <% end %>
+</div>

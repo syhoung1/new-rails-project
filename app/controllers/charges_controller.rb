@@ -20,9 +20,11 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
     
-    flash[:notice] = "Thank you for your payment of #{charge.amount}, #{current_user.email}"
-    current_user.premium!
-    redirect_to user_path
+    if charge.paid
+      flash[:notice] = "Thank you for your payment of #{charge.amount}, #{current_user.email}"
+      current_user.premium!
+      redirect_to wikis_path
+    end
     
     rescue Stripe::CardError => e
       flash[:alert] = e.message

@@ -1,7 +1,19 @@
 <div class='nav'>
-  <%= link_to "Add a wiki", new_wiki_path %>
+  <%= link_to "Add a wiki", new_wiki_path %> | 
+  <%= link_to "My profile", user_path(current_user) %>
 </div>
-<% @wikis.each do |wiki| %>
-  <%= link_to wiki.title, wiki %>
-  <%= wiki.body %>
-<% end %>
+</br>
+<div class="row">
+  <div class="col-md-8">
+    <% @wikis.each do |wiki| %>
+      <% if !current_user.standard? || !wiki.private? %>
+      <div class="row">
+        <%= link_to wiki.title, wiki %>
+      </div>
+      <div class="row">
+        <p><%= wiki.body %></p>
+      </div>  
+      <% end %>
+    <% end %>
+  </div>
+</div>

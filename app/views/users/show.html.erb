@@ -1,8 +1,13 @@
+<div class='row'>
+  <%= link_to "Home page", wikis_path %> | 
+  <%= link_to "Sign out", destroy_user_session_path%>
+</div>
+
 <h1><%= @user.email %></h1>
 <% if !current_user.admin? %>
   <% if current_user.standard? %>
-    <h3><%= link_to "Upgrade to premium", charges_new_path %></h3>
+    <h3><%= link_to "Upgrade to premium", new_charge_path %></h3>
   <% elsif current_user.premium? %>
-    <h3><%= link_to "Switch me back to a normal subscription", user_path, method: :put, data: { confirm: 'Are you sure you would like to switch back to a normal subscription?' } %></h3>
+    <h3><%= link_to "Switch me back to a normal subscription", user_path, method: :put, data: { confirm: 'Are you sure you would like to switch back to a normal subscription? Your private wikis will become public' } %></h3>
   <% end %>
 <% end %>

@@ -1,18 +1,1 @@
-<div class: '#'>
-  <%= form_for @wiki do |w| %>
-    <div>
-      <%= w.label :title %>
-      <%= w.text_field :title %>
-    </div>
-    <div>
-      <%= w.label :body %>
-      <%= w.text_area :body %>
-    </div>
-    <div>
-      <%= w.label :private %>
-      <%= w.check_box :private %>
-    </div>
-    <%= w.submit 'submit' %>
-    <%= link_to 'cancel', @wiki %>
-  <% end %>
-</div>
+<%= render 'wikis/form' %>

@@ -13,7 +13,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
-gem 'bootstrap'
+gem 'bootstrap-sass'
 gem 'figaro'
 gem 'pundit'
 gem 'devise'

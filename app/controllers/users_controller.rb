@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def update
     current_user.standard!
+    current_user.wikis.update_all(private: false)
     redirect_to user_path
   end
 end

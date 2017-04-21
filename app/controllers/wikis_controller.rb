@@ -2,6 +2,7 @@ class WikisController < ApplicationController
   
   def index
     @wikis = Wiki.all
+    @wiki = Wiki.first || Wiki.find(params[:id])
   end
 
   def create
@@ -27,6 +28,7 @@ class WikisController < ApplicationController
   end
 
   def show
+    @wikis = Wiki.all
     @wiki = Wiki.find(params[:id])
   end
 

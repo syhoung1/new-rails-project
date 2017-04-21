@@ -1,0 +1,23 @@
+<div>
+  <%= form_for @wiki do |w| %>
+    <div>
+      <%= w.label :title %>
+      <%= w.text_field :title %>
+    </div>
+    <div>
+      <%= w.text_area :body %>
+    </div>
+    <% if current_user.admin? || current_user.premium? %>
+      <div class="form-group">
+        <%= w.label :private, class: "checkbox" do %>
+          <%= w.check_box :private %>
+          <small>Make this wiki private</small>
+        <% end %>
+      </div>
+    <% end %>
+    <%= w.submit 'submit' %>
+    <%= link_to 'cancel', @wiki %>
+  <% end %>
+</div>
+
+

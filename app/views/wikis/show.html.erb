@@ -1,4 +1,33 @@
-<%= @wiki.title %>
-<%= @wiki.body %>
-<%= link_to "Edit wiki", edit_wiki_path %>
-<%= link_to "Delete wiki", @wiki, method: :delete%>
+<div class='page-nav'>
+  <%= link_to "Home page", wikis_path %> | 
+  <%= link_to "Add a wiki", new_wiki_path %>
+  <div class="user-links pull-right">
+    <%= link_to "My profile", user_path(current_user) %>
+  </div>
+</div>
+</br>
+<div class="col-md-4 pull-left index">
+  <% @wikis.each do |wiki| %>
+    <% if !current_user.standard? || !wiki.private? %>
+    <div class="row col-md-12">
+      <%= link_to wiki.title, wiki %>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="col-md-8">
+  <div class="row">
+      <h3 class="media-body col-md-6">
+        <%= @wiki.title %>
+      </h3>
+  </div>
+  <div class="row col-md-12">
+    <%= @wiki.body %>
+  </div>
+  
+  <div class="row col-md-12">
+    <%= link_to "Edit wiki", edit_wiki_path %>
+    <%= link_to "Delete wiki", @wiki, method: :delete %>
+  </div>
+</div>

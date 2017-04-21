@@ -1,5 +1,5 @@
 class Amount < ActiveRecord::Base
   def self.default
-    return 15_00
+    return 15
   end
 end

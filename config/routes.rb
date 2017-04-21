@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
-
+  devise_for :users
   resources :users, only: [:show, :update]
-
-  get 'charges/new'
-
-  get 'charges/create'
-
   resources :wikis
-  
   resources :charges, only: [:new, :create]
   
-  devise_for :users
+  authenticated :user do
+    root 'wikis#index', as: :authenticated_root
+  end
   
   get 'welcome/index'
 
