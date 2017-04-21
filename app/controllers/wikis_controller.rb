@@ -1,12 +1,10 @@
 class WikisController < ApplicationController
-  
   def index
     @wikis = Wiki.all
     @wiki = Wiki.first || Wiki.find(params[:id])
   end
 
   def create
-    
     @wiki = Wiki.new(wiki_params)
     
     if params[:wiki][:private] == "1"

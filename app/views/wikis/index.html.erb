@@ -1,10 +1,10 @@
-<div class='nav'>
-  <%= link_to "Add a wiki", new_wiki_path %> | 
+<div class='page-nav user-link pull-right'>
   <%= link_to "My profile", user_path(current_user) %>
 </div>
 </br>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Wikis</h1>
     <% @wikis.each do |wiki| %>
       <% if !current_user.standard? || !wiki.private? %>
       <div class="row">

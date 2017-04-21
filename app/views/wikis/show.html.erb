@@ -6,7 +6,7 @@
   </div>
 </div>
 </br>
-<div class="col-md-4 pull-left index">
+<div class="col-md-3 pull-left index">
   <% @wikis.each do |wiki| %>
     <% if !current_user.standard? || !wiki.private? %>
     <div class="row col-md-12">
@@ -16,9 +16,9 @@
   <% end %>
 </div>
 
-<div class="col-md-8">
+<div class="col-md-9">
   <div class="row">
-      <h3 class="media-body col-md-6">
+      <h3 class="media-body col-md-12">
         <%= @wiki.title %>
       </h3>
   </div>

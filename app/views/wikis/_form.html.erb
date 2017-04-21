@@ -1,22 +1,24 @@
-<div>
+</br>
+<div class="row col-md-8 col-md-offset-2">
   <%= form_for @wiki do |w| %>
-    <div>
+    <div class='form-group'>
       <%= w.label :title %>
-      <%= w.text_field :title %>
+      </br>
+      <%= w.text_field :title, class: 'form-control' %>
     </div>
-    <div>
-      <%= w.text_area :body %>
+    <div class='form-group'>
+      <%= w.text_area :body, rows: 10, class: 'form-control' %>
     </div>
     <% if current_user.admin? || current_user.premium? %>
-      <div class="form-group">
-        <%= w.label :private, class: "checkbox" do %>
-          <%= w.check_box :private %>
+      <div class='form-group'>
+        <%= w.label :private do %>
+          <%= w.check_box :private, class: 'checkbox' %>
           <small>Make this wiki private</small>
         <% end %>
       </div>
     <% end %>
-    <%= w.submit 'submit' %>
-    <%= link_to 'cancel', @wiki %>
+    <%= w.submit 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'cancel', @wiki, class: 'btn btn-danger' %>
   <% end %>
 </div>
 
