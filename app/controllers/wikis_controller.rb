@@ -1,13 +1,17 @@
 class WikisController < ApplicationController
+  
   def index
     @wikis = Wiki.all
   end
 
   def create
+    
     @wiki = Wiki.new(wiki_params)
     
-    if @wiki.save
-      redirect_to @wiki, notice: "Your wiki post has been saved!"
+    if params[:wiki][:private] == "1"
+      can_create_private_wiki?
+    elsif @wiki.save
+      redirect_to @wiki, notice: "Your wiki has been saved!"
     else
       flash[:alert] = "There was an error in saving your wiki!"
       render :new
@@ -49,5 +53,12 @@ class WikisController < ApplicationController
   
   def wiki_params
     params.require(:wiki).permit(:title, :body, :private)
+  end
+  
+  def can_create_private_wiki?
+    unless current_user.admin? || current_user.premium?
+      flash.now[:alert] = "You must be a premium subscriber to do that!"
+      render :new
+    end
   end
 end
