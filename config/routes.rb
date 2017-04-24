@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
   devise_for :users
   resources :users, only: [:show, :update]
-  resources :wikis
+  resources :wikis do
+    resources :collaborators, only: [:new, :create, :destroy]
+    get 'collaborators/destroy'
+  end
   resources :charges, only: [:new, :create]
   
   authenticated :user do

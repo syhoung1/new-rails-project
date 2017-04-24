@@ -6,6 +6,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(wiki_params)
+    @wiki.user_id = current_user.id
     
     if params[:wiki][:private] == "1"
       can_create_private_wiki?
@@ -33,6 +34,8 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.update_attributes(wiki_params)
+    collaborator = Collaborator.create(wiki_id: @wiki.id, user_id: current_user.id)
+    @wiki.collaborators << collaborator
     
     if @wiki.save
       redirect_to @wiki
