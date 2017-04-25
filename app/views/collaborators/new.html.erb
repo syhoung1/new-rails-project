@@ -1,14 +1,10 @@
 </br>
 <div class="row col-md-8 col-md-offset-2">
-  <%= form_for @wiki do |w| %>
-    <% if current_user.admin? || current_user.premium? %>
-      <div class='form-group'>
-        <%= w.label :user_id do %>
-          Enter the collaborator's email
-          <%= w.email_field :user_id, class: 'form-control' %>
-        <% end %>
-      </div>
+  <div class='form-group'>
+    <%= form_tag [@wiki, @collaborator] do %>
+    Find by email
+    <%= email_field_tag :email %>
+    <%= submit_tag "Add collaborator" %>
     <% end %>
-    <%= w.submit "Add collaborator", class: 'form-control' %>
-  <% end %>
+  </div>
 </div>

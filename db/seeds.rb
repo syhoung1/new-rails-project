@@ -7,10 +7,9 @@ end
 users = User.all
 
 30.times do 
-  Wiki.create(
+  users.sample.wikis.create!(
     title: Faker::Superhero.name,
     body: Faker::Hipster.paragraph,
     private: Faker::Boolean.boolean,
-    user: users.sample
   )
 end

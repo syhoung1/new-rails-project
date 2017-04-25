@@ -1,6 +1,11 @@
-</br>
 <div class="row col-md-8 col-md-offset-2">
-  <%= form_for @wiki do |w| %>
-    <%= render partial: 'wikis/form', locals: { w: w } %>
+  <%= render 'form' %>
+  <% if @collaborators %>
+    <% @collaborators.each do |collaborator| %>
+      <div>
+        <span><%= collaborator.user.email %></span>
+        <span><%= link_to 'Remove collaborator', wiki_collaborator_path(@wiki, collaborator), method: :delete %></span>
+      </div>
+    <% end %>
   <% end %>
 </div>

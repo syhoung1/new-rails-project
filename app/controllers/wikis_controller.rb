@@ -5,12 +5,14 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(wiki_params)
-    @wiki.user_id = current_user.id
+    @wiki = current_user.wikis.new(wiki_params)
     
-    if params[:wiki][:private] == "1"
-      can_create_private_wiki?
-    elsif @wiki.save
+    unless current_user.admin? || current_user.premium?
+      flash[:alert] = "You must be a premium subscriber to do that!"
+      redirect_to @wiki && return
+    end
+    
+    if @wiki.save
       redirect_to @wiki, notice: "Your wiki has been saved!"
     else
       flash[:alert] = "There was an error in saving your wiki!"
@@ -24,6 +26,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.collaborators
   end
 
   def show
