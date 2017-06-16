@@ -1,20 +1,21 @@
 <%= form_for @wiki do |w| %>
-  <div class='form-group'>
-    <%= w.label :title %>
-    </br>
-    <%= w.text_field :title, class: 'form-control' %>
-  </div>
-  <div class='form-group'>
-    <%= w.text_area :body, rows: 10, class: 'form-control' %>
-  </div>
-  <% if current_user.admin? || current_user.premium? %>
+  <div class='col-md-6'>
     <div class='form-group'>
-      <%= w.label :private do %>
-        <%= w.check_box :private, class: 'checkbox' %>
-        <small>Make this wiki private</small>
-      <% end %>
+      <%= w.label :title %>
+      </br>
+      <%= w.text_field :title, class: 'form-control' %>
     </div>
-  <% end %>
+    <div class='form-group'>
+      <%= w.text_area :body, rows: 10, class: 'form-control' %>
+    </div>
+    <% if current_user.admin? || current_user.premium? %>
+      <div class='form-group'>
+        <%= w.label :private do %>
+          <%= w.check_box :private, class: 'checkbox' %>
+          <small>Make this wiki private</small>
+        <% end %>
+      </div>
+    <% end %>
   <%= w.submit 'Save', class: 'btn btn-primary' %>
   <% if controller.action_name == 'edit' %>
     <% if current_user.id == @wiki.user_id || current_user.admin? %>
@@ -23,3 +24,10 @@
   <% end %>
   <%= link_to 'cancel', @wiki, class: 'btn btn-danger' %>
 <% end %>
+</div>
+<div class='col-md-6'>
+  <h1>Preview</h1>
+  <div id='markdown-preview'>
+
+  </div>
+</div>
